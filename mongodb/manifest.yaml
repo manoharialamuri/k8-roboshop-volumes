@@ -8,8 +8,8 @@ metadata:
     tier: db
     component: mongodb
 spec:
+  clusterIP: None
   selector:
-    clusterIP: None
     # labels are used as selectors
     project: roboshop
     tier: db
@@ -24,13 +24,16 @@ kind: StatefulSet
 metadata:
   name: mongodb
   namespace: roboshop
+  labels: 
+    project: roboshop
+    tier: db
+    component: mongodb
 spec:
   selector:
     matchLabels:
-      labels:
-        project: roboshop
-        tier: db
-        component: mongodb
+      project: roboshop
+      tier: db
+      component: mongodb
   serviceName: "mongodb-headless"
   replicas: 3 # by default is 1
   #This is pod definition
